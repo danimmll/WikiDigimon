@@ -1,0 +1,61 @@
+@import url('https://fonts.cdnfonts.com/css/digimon');
+
+body {
+    font-family: system-ui, sans-serif;
+    background: #0A15DB;
+    color: #eee;
+
+    display: flex;            
+    justify-content: center;
+    align-items: center;      
+    margin: 0;                
+    flex-direction: column;    
+}
+
+
+
+.titulo {
+    text-align: center;
+    font-family: "Digimon";
+    font-size: 4rem;
+}
+
+#gallery {
+    width: 600px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.txtId {
+    font-size: small;
+    font-weight: bold;
+    color: black;
+}
+
+.txtNombre {
+    font-size: small;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+}
+                
+.card img {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.card {
+    position: relative;
+    width: auto;
+    height: auto;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid yellow;
+}
