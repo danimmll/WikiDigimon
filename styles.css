@@ -1,4 +1,7 @@
-@import url('https://fonts.cdnfonts.com/css/digimon');
+@font-face {
+    font-family: "Digimon";
+    src: local("Digimon"), url("fonts/PixelDigivolve-mOm9.ttf") format("truetype");
+}
 
 body {
     font-family: system-ui, sans-serif;
@@ -12,12 +15,26 @@ body {
     flex-direction: column;    
 }
 
-
-
 .titulo {
     text-align: center;
     font-family: "Digimon";
     font-size: 4rem;
+    color: #FFD700;
+    text-transform: uppercase;
+
+    text-shadow:
+        -2px -2px 0 #0033CC,   
+        2px -2px 0 #0033CC,
+        -2px 2px 0 #0033CC,
+        2px 2px 0 #0033CC,
+        4px 4px 8px #FF6600;   
+}
+
+.mundo {
+    text-align: center;
+    font-family: "Digimon";
+    font-size: 4rem;
+    text-shadow: none;
 }
 
 #gallery {
