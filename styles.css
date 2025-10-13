@@ -38,9 +38,9 @@ body {
 }
 
 #gallery {
-    width: 600px;
+    width: 1000px;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(5,1fr);
     gap: 1rem;
     padding: 1rem;
 }
@@ -133,6 +133,10 @@ body {
     border-radius: 8px;
     background: rgba(0, 255, 255, 0.4);
        color: white;
+}
+
+#botonBuscar:hover {
+  transform: scale(1.1);
 }
 
 .digimonDetalles {
