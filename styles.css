@@ -40,7 +40,7 @@ body {
 #gallery {
     width: 600px;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 1rem;
     padding: 1rem;
 }
@@ -51,11 +51,23 @@ body {
     color: black;
 }
 
+.txtId:hover{
+            color: salmon;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
 .txtNombre {
     font-size: small;
     font-weight: bold;
     color: black;
     text-transform: uppercase;
+}
+
+.txtNombre:hover{
+            color: salmon;
+    font-weight: bold;
+    transform: scale(1.1);
 }
                 
 .card img {
@@ -74,5 +86,151 @@ body {
     overflow: hidden;
     text-align: center;
     padding: 10px;
-    border: 2px solid yellow;
+        border: 4px solid gold;
+}
+
+.card:hover {
+        transform: scale(1.1);
+}
+
+#buscadorId {
+    height: 20px;
+    width: 40px;
+    border: 2px solid cyan;
+    border-radius: 8px;
+    background: rgba(0, 255, 255, 0.4);
+       color: white;
+}
+
+#buscadorId::placeholder {
+    color: white;
+}
+
+#buscadorId:focus {
+    border-color: cyan;
+}
+
+#buscadorNombre {
+    height: 20px;
+    width: 150px;
+        border: 2px solid cyan;
+    border-radius: 8px;
+    background: rgba(0, 255, 255, 0.4);
+       color: white;
+}
+
+#buscadorNombre::placeholder {
+    color: white;
+}
+
+#buscadorNombre:focus {
+    border-color: cyan;
+}
+
+#botonBuscar {
+    height: 25px;
+        border: 2px solid cyan;
+    border-radius: 8px;
+    background: rgba(0, 255, 255, 0.4);
+       color: white;
+}
+
+.digimonDetalles {
+    background: white;
+    color: black;
+    text-align: center;
+    width: 1000px;
+    border: 4px solid gold;
+    border-radius: 8px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 50px;
+}
+
+.abilities {
+    text-align: start;
+}
+
+.fields {
+  display: flex;        
+  flex-wrap: wrap; 
+  gap: 10px;           
+  justify-content: flex-start; 
+}
+
+.fieldCard {
+  display: flex;           
+  flex-direction: column;
+  align-items: center;     
+  width: 100px;            
+  text-align: center;
+}
+
+.fieldCard img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.fieldCard img:hover {
+  transform: scale(1.05); 
+}
+
+.contenedorEvoluciones {
+  margin-top: 30px;
+}
+
+.evoluciones {
+  display: flex;
+  flex-wrap: wrap;      
+  gap: 15px;            
+  justify-content: center; 
+  margin-bottom: 20px;
+}
+
+.evolucionCard {
+  flex: 0 0 120px;      
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.evolucionCard img {
+  width: 100%;           
+  height: auto;          
+  border-radius: 8px;    
+  border: 2px solid #ccc; 
+  transition: transform 0.2s;
+}
+
+.evolucionCard img:hover {
+  transform: scale(1.05); 
+}
+
+.evolucionCard p {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.stat:hover {
+            color: salmon;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.botonVolver {
+    margin-bottom: 100px;
+  padding: 8px 16px;
+  background-color: white;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.botonVolver:hover {
+        transform: scale(1.1);
 }
