@@ -110,6 +110,8 @@ body {
 }
 
 #buscadorNombre {
+  margin-left: 7px;
+  margin-right: 7px;
     height: 20px;
     width: 150px;
         border: 2px solid cyan;
@@ -122,9 +124,7 @@ body {
     color: white;
 }
 
-#buscadorNombre:focus {
-    border-color: cyan;
-}
+
 
 #botonBuscar {
     height: 25px;
@@ -132,10 +132,27 @@ body {
     border-radius: 8px;
     background: rgba(0, 255, 255, 0.4);
        color: white;
+       margin-top: 7px;
 }
 
 #botonBuscar:hover {
   transform: scale(1.1);
+}
+
+#buscadorId:hover {
+  transform: scale(1.1);
+}
+
+#buscadorNombre:hover {
+  transform: scale(1.1);
+}
+
+#buscadorNombre:focus {
+  outline: none;
+}
+
+#buscadorId:focus {
+  outline: none;
 }
 
 .digimonDetalles {
@@ -200,8 +217,8 @@ body {
 }
 
 .evolucionCard img {
-  width: 100%;           
-  height: auto;          
+  width: 100px;           
+  height: 100px;          
   border-radius: 8px;    
   border: 2px solid #ccc; 
   transition: transform 0.2s;

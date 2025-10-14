@@ -64,7 +64,7 @@ botonBuscar.addEventListener('click', async () => {
   try {
     const urls = [];
     for (let i = 0; i <= 10; i++) {
-      urls.push(`https://digi-api.com/api/v1/digimon?page=${i}&pageSize=50`);
+      urls.push(`https://digi-api.com/api/v1/digimon?page=${i}&pageSize=148`);
     }
 
     const promesas = urls.map(u => fetch(u).then(r => r.json()));
@@ -110,6 +110,8 @@ botonBuscar.addEventListener('click', async () => {
 
       cartas.forEach(card => {
       card.addEventListener('click', () => {
+      const digimonId = card.dataset.id;
+      window.location.href = `details.html?id=${digimonId}`;
   });
 });
 

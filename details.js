@@ -1,5 +1,5 @@
 const detalle = document.getElementById('detalle');
-const id = window.location.search.split('=')[1];
+const id = window.location.href.split('=')[1];
 
 async function cargarDetalle(id) {
   try {
