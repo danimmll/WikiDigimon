@@ -40,7 +40,7 @@ body {
 #gallery {
     width: 1000px;
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(6,1fr);
     gap: 1rem;
     padding: 1rem;
 }
@@ -78,7 +78,6 @@ body {
 }
 
 .card {
-    position: relative;
     width: auto;
     height: auto;
     background: white;

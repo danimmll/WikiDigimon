@@ -9,8 +9,8 @@ const botonBuscar = document.getElementById("botonBuscar");
 async function cargarDigimons () {
 
 try {
-    const num = Math.floor(Math.random() * 148) + 1;
-    const respuesta = await fetch(`https://digi-api.com/api/v1/digimon?page=${num}&pageSize=10`);
+    const num = Math.floor(Math.random() * 124);
+    const respuesta = await fetch(`https://digi-api.com/api/v1/digimon?page=${num}&pageSize=12`);
     const digimons = await respuesta.json();
 
     console.log(digimons)
@@ -63,7 +63,7 @@ botonBuscar.addEventListener('click', async () => {
 
   try {
     const urls = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 0; i <= 10; i++) {
       urls.push(`https://digi-api.com/api/v1/digimon?page=${i}&pageSize=50`);
     }
 
@@ -110,8 +110,6 @@ botonBuscar.addEventListener('click', async () => {
 
       cartas.forEach(card => {
       card.addEventListener('click', () => {
-      const digimonId = card.dataset.id;
-      window.location.href = `details.html?id=${digimonId}`;
   });
 });
 
