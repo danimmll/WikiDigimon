@@ -1,5 +1,5 @@
 const detalle = document.getElementById('detalle');
-const id = window.location.search.split('=')[1];
+const id = window.location.href.split('=')[1];
 
 async function cargarDetalle(id) {
   try {
@@ -23,29 +23,39 @@ async function cargarDetalle(id) {
       </div>
     `).join('');
 
-    let htmlPrev = '';
-    for (let e of digimon.priorEvolutions || []) {
-      const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
-      const d = await res.json();
-      htmlPrev += `
-        <div class="evolucionCard">
-          <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" title="${d.name}" />
-          <p>${d.name}</p>
-        </div>
-      `;
-    }
+const evolucionesPrevias = digimon.priorEvolutions;
 
-    let htmlNext = '';
-    for (let e of digimon.nextEvolutions || []) {
-      const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
-      const d = await res.json();
-      htmlNext += `
-        <div class="evolucionCard">
-          <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" title="${d.name}" />
-          <p>${d.name}</p>
-        </div>
-      `;
-    }
+const previas = await Promise.all(
+  evolucionesPrevias.map(async (e) => {
+    const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
+    return res.json();
+  })
+);
+
+const preEvos = previas.map(d => `
+  <div class="evolucionCard">
+    <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
+    <p>${d.name}</p>
+  </div>
+`).join('');
+
+const evolucionesPosteriores = digimon.nextEvolutions;
+
+const post = await Promise.all(
+  evolucionesPosteriores.map(async (e) => {
+    const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
+    return res.json();
+  })
+);
+
+const postEvos = post.map(d => `
+  <div class="evolucionCard">
+    <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
+    <p>${d.name}</p>
+  </div>
+`).join('');
+
+
 
 
     const digimonHtml = `
@@ -64,13 +74,13 @@ async function cargarDetalle(id) {
     <div class = "fields">${fieldsHtml}</div>
     <div class="contenedorEvoluciones">
           <h2 class="stat">Evoluciones Previas</h2>
-      <div class="evoluciones">${htmlPrev}</div>
+      <div class="evoluciones">${preEvos}</div>
       <h2 class="stat">Digimon Actual</h2>
         <div class = "evoluciones">
         <img class ="evoluciones" src="${digimon.images?.[0]?.href || ''}" alt="${digimon.name}" />
         </div>
       <h2 class="stat">Siguientes Evoluciones</h2>
-      <div class="evoluciones">${htmlNext}</div>
+      <div class="evoluciones">${postEvos}</div>
       </div>
 </div>
     `;
@@ -82,12 +92,13 @@ async function cargarDetalle(id) {
     console.error(error);
   }
 }
+const botonVolver = document.createElement('a');
+botonVolver.href = 'index.html';
+botonVolver.id = 'botonVolver';
+botonVolver.classList.add('botonVolver');
+botonVolver.textContent = '🔙';
 
+document.body.appendChild(botonVolver);
 
 cargarDetalle(id);
 
-const btnVolver = document.getElementById('botonVolver');
-
-btnVolver.addEventListener('click' , () => {
-      window.location.href = 'index.html';
-})
