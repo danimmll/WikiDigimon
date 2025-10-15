@@ -50,7 +50,6 @@ botonBuscar.addEventListener('click', async () => {
   }
 
   try {
-
     const res = await fetch(`https://digi-api.com/api/v1/digimon?page=0&pageSize=1500`);
     const data = await res.json();
     const resultados = data.content;
