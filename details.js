@@ -6,54 +6,62 @@ async function cargarDetalle(id) {
     const respuesta = await fetch(`https://digi-api.com/api/v1/digimon/${id}`);
     const digimon = await respuesta.json();
 
-    const habilidadesHtml = digimon.skills?.map(s => `
-      <p>
-        <strong class="stat">${s.skill}:</strong> ${s.description || "No description"}
-      </p>
-    `).join('');
+    const habilidadesHtml = digimon.skills?.length
+      ? digimon.skills.map(s => `
+        <p>
+          <strong class="stat">${s.skill}:</strong> ${s.description || "No description"}
+        </p>
+      `).join('')
+      : '<p>No hay habilidades registradas.</p>';
 
-    const tiposHtml = digimon.types?.map(t => t.type).join(', ');
+        const tiposHtml = digimon.types?.length
+      ? digimon.types.map(t => t.type).join(', ')
+      : 'Desconocido';
 
-    const descripcion = digimon.descriptions[1]?.description;
+    const descripcion = digimon.descriptions?.[1]?.description || 'No disponible';
 
-        const fieldsHtml = digimon.fields?.map(f => `
-      <div class="fieldCard">
-        <img src="${f.image}" alt="${f.field}" title="${f.field}" />
-        <p>${f.field}</p>
-      </div>
-    `).join('');
+    const fieldsHtml = digimon.fields?.length
+      ? digimon.fields.map(f => `
+        <div class="fieldCard">
+          <img src="${f.image}" alt="${f.field}" title="${f.field}" />
+          <p>${f.field}</p>
+        </div>
+      `).join('')
+      : '<p>No hay fields disponibles.</p>';
 
-const evolucionesPrevias = digimon.priorEvolutions;
+    let preEvos = '<p>No hay evoluciones previas.</p>';
+    if (digimon.priorEvolutions?.length) {
+      const previas = await Promise.all(
+        digimon.priorEvolutions.map(async (e) => {
+          const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
+          return res.json();
+        })
+      );
 
-const previas = await Promise.all(
-  evolucionesPrevias.map(async (e) => {
-    const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
-    return res.json();
-  })
-);
+      preEvos = previas.map(d => `
+        <div class="evolucionCard">
+          <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
+          <p>${d.name}</p>
+        </div>
+      `).join('');
+    }
 
-const preEvos = previas.map(d => `
-  <div class="evolucionCard">
-    <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
-    <p>${d.name}</p>
-  </div>
-`).join('');
+    let postEvos = '<p>No hay evoluciones posteriores.</p>';
+    if (digimon.nextEvolutions?.length) {
+      const post = await Promise.all(
+        digimon.nextEvolutions.map(async (e) => {
+          const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
+          return res.json();
+        })
+      );
 
-const evolucionesPosteriores = digimon.nextEvolutions;
-
-const post = await Promise.all(
-  evolucionesPosteriores.map(async (e) => {
-    const res = await fetch(`https://digi-api.com/api/v1/digimon/${e.id}`);
-    return res.json();
-  })
-);
-
-const postEvos = post.map(d => `
-  <div class="evolucionCard">
-    <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
-    <p>${d.name}</p>
-  </div>
-`).join('');
+      postEvos = post.map(d => `
+        <div class="evolucionCard">
+          <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
+          <p>${d.name}</p>
+        </div>
+      `).join('');
+    }
 
 
 
