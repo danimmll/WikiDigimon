@@ -46,10 +46,10 @@ async function cargarDetalle(id) {
       );
 
       preEvos = previas.map(d => `
-        <div class="evolucionCard">
+        <a href="details.html?id=${d.id}" class="evolucionCard">
           <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
           <p>${d.name}</p>
-        </div>
+        </a>
       `).join('');
     }
 
@@ -63,10 +63,10 @@ async function cargarDetalle(id) {
       );
 
       postEvos = post.map(d => `
-        <div class="evolucionCard">
+        <a href="details.html?id=${d.id}" class="evolucionCard">
           <img src="${d.images?.[0]?.href || ''}" alt="${d.name}" />
           <p>${d.name}</p>
-        </div>
+        </a>
       `).join('');
     }
 

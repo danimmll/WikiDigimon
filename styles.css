@@ -213,6 +213,9 @@ body {
 }
 
 .evolucionCard {
+  display: block; 
+  text-decoration: none;
+  color: black;
   flex: 0 0 120px;      
   display: flex;
   flex-direction: column;
