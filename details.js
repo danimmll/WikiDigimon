@@ -20,6 +20,13 @@ async function cargarDetalle(id) {
 
     const descripcion = digimon.descriptions?.[1]?.description || 'No disponible';
 
+    const atributosHtml = digimon.attributes?.length
+  ? digimon.attributes.map(a => `
+      <p>${a.attribute}</p>
+    `).join('')
+  : '<p>No hay atributos registrados.</p>';
+
+
     const fieldsHtml = digimon.fields?.length
       ? digimon.fields.map(f => `
         <div class="fieldCard">
@@ -77,6 +84,10 @@ async function cargarDetalle(id) {
   <h3 class="stat">Habilidades:</h3>
   <div class = "abilities">
     ${habilidadesHtml}
+    </div>
+    <h3 class="stat">Atributos:</h3>
+    <div class="attributes">
+    ${atributosHtml}
     </div>
     <h3 class="stat">Fields:</h3>
     <div class = "fields">${fieldsHtml}</div>
